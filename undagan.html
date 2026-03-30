@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Budi & Sinta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fafaf9;
+            color: #444;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .font-cursive { font-family: 'Great Vibes', cursive; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeInPage 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .photo-frame {
+            padding: 12px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #d4af37;
+            transition: all 0.5s ease;
+        }
+        
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            display: none;
+        }
+
+        .smooth-disappear {
+            animation: smoothHide 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            pointer-events: none;
+        }
+
+        @keyframes smoothHide {
+            0% { opacity: 1; transform: scale(1); filter: blur(0); }
+            100% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
+        }
+
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fafaf9;
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        .page-transition-overlay.active {
+            transform: translateY(0);
+        }
+
+        .page-transition-overlay.exit {
+            transform: translateY(-100%);
+        }
+
+        .countdown-item {
+            background: white;
+            border: 1px solid #d4af37;
+            min-width: 70px;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+            border-radius: 24px;
+        }
+        .map-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="transition-overlay" class="page-transition-overlay flex items-center justify-center">
+        <div class="text-center">
+            <h2 class="font-cursive text-4xl text-gray-800">Menuju Kebahagiaan...</h2>
+        </div>
+    </div>
+
+    <div id="music-control">
+        <button onclick="toggleMusic()" class="bg-white/80 backdrop-blur p-3 rounded-full shadow-lg border border-yellow-600 hover:scale-110 transition-transform">
+            <svg id="music-icon" class="w-6 h-6 text-yellow-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- HALAMAN 1: SAMPUL -->
+    <div id="landing-page" class="page active relative flex items-center justify-center min-h-screen overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] scale-110" id="hero-bg" style="background-image: url('../img/WhatsApp\ Image\ 2026-03-30\ at\ 14.56.48.jpeg');">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
+        </div>
+
+        <div id="landing-content" class="relative z-10 text-center px-6 text-white">
+            <div class="mb-6 float-anim">
+                <svg class="w-14 h-14 mx-auto text-yellow-500 opacity-90" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+            
+            <p class="tracking-[0.6em] uppercase text-xs mb-4 font-light">Undangan Pernikahan</p>
+            <h1 class="text-7xl md:text-9xl font-cursive mb-6">Elang & Yunda</h1>
+            <div class="w-20 h-[1px] bg-yellow-500/50 mx-auto mb-8"></div>
+            <p class="font-serif italic text-xl mb-12 opacity-90">05 . 04 . 2026</p>
+            
+            <div id="button-wrapper" class="space-y-4">
+                <p class="text-xs uppercase tracking-widest opacity-70">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                <h2 class="text-2xl font-serif italic mb-10">Tamu Undangan</h2>
+                
+                <button id="btn-open" onclick="startTransition()" class="group relative inline-flex items-center justify-center px-12 py-4 font-bold text-black transition-all duration-500 bg-white rounded-full hover:bg-yellow-600 hover:text-white shadow-[0_15px_45px_rgba(0,0,0,0.4)]">
+                    <span class="flex items-center tracking-[0.2em] text-sm">
+                        BUKA UNDANGAN
+                        <svg class="w-5 h-5 ml-3 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HALAMAN 2: ISI UNDANGAN -->
+    <div id="wedding-content" class="page bg-[#fafaf9] py-10 px-4">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Hitung Mundur -->
+            <div class="text-center mb-24">
+                <p class="text-xs uppercase tracking-[0.3em] text-yellow-700 mb-6">Menghitung Hari Menuju Acara</p>
+                <div id="countdown" class="flex justify-center gap-4 text-gray-800">
+                    <div class="countdown-item shadow-sm">
+                        <span id="days" class="block text-2xl font-bold">00</span>
+                        <span class="text-[10px] uppercase tracking-widest">Hari</span>
+                    </div>
+                    <div class="countdown-item shadow-sm">
+                        <span id="hours" class="block text-2xl font-bold">00</span>
+                        <span class="text-[10px] uppercase tracking-widest">Jam</span>
+                    </div>
+                    <div class="countdown-item shadow-sm">
+                        <span id="minutes" class="block text-2xl font-bold">00</span>
+                        <span class="text-[10px] uppercase tracking-widest">Menit</span>
+                    </div>
+                    <div class="countdown-item shadow-sm">
+                        <span id="seconds" class="block text-2xl font-bold">00</span>
+                        <span class="text-[10px] uppercase tracking-widest">Detik</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-32">
+                <h2 class="font-serif italic text-3xl mb-8">Assalamu'alaikum Wr. Wb.</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 italic leading-relaxed">
+                    Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.
+                </p>
+            </div>
+
+            <!-- Mempelai -->
+            <div class="grid md:grid-cols-2 gap-12 mb-32">
+                <div class="photo-frame -rotate-3">
+                    <div class="aspect-[3/4] bg-gray-200 overflow-hidden">
+                        <img src="../img/WhatsApp Image 2026-03-30 at 14.56.51.jpeg" class="w-full h-full object-cover grayscale" alt="Mempelai Pria">
+                    </div>
+                    <div class="pt-6 text-center">
+                        <h3 class="font-cursive text-4xl mb-2">Muhamad ismail adam elang.s</h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">Putra Bpk. Fahruddin & Ibu Retno yuniarti</p>
+                    </div>
+                </div>
+                <div class="photo-frame rotate-3 md:mt-16">
+                    <div class="aspect-[3/4] bg-gray-200 overflow-hidden">
+                        <img src="../img/WhatsApp Image 2026-03-30 at 14.56.53.jpeg" class="w-full h-full object-cover grayscale" alt="Mempelai Wanita">
+                    </div>
+                    <div class="pt-6 text-center">
+                        <h3 class="font-cursive text-4xl mb-2">Wahyu dawati</h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">Putri Bpk. Bustan effendi mz & Ibu Nurlaina</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lokasi Acara -->
+            <div class="bg-white border border-gray-100 rounded-[60px] p-8 md:p-16 text-center shadow-xl mb-32">
+                <h2 class="font-serif text-3xl font-bold mb-12">Lokasi & Waktu</h2>
+                <div class="grid md:grid-cols-2 gap-10 mb-12">
+                    <div class="p-6 bg-stone-50 rounded-3xl">
+                        <h4 class="font-bold text-yellow-700 mb-2">AKAD NIKAH</h4>
+                        <p class="text-sm">08.00 WIB - Hingga selesai</p>
+                        <p class="text-xs text-gray-500">Desa pandan agung, Palembang</p>
+                    </div>
+                    <div class="p-6 bg-stone-50 rounded-3xl">
+                        <h4 class="font-bold text-yellow-700 mb-2">RESEPSI</h4>
+                        <p class="text-sm">10.00 WIB - Hingga selesai</p>
+                        <p class="text-xs text-gray-500">GDesa pandan agung, Palembang</p>
+                    </div>
+                </div>
+                
+                <!-- Google Maps Container -->
+                <div class="map-responsive shadow-inner border border-gray-100 mb-8">
+                    <iframe 
+                        id="google-map-iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.1947413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f421d0000001%3A0x673c683884f3e696!2sGrand%20Indonesia!5e0!3m2!1sid!2sid!4v1700000000000" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <!-- Pengaturan Link Lokasi -->
+                <div class="mt-4 mb-8 bg-gray-50 p-4 rounded-2xl border border-dashed border-gray-300">
+                    <p class="text-[10px] text-gray-400 mb-2 uppercase font-bold text-left">Admin: Ganti Lokasi Peta</p>
+                    <input type="text" id="map-url-input" placeholder="Tempel link embed Google Maps di sini..." class="text-xs w-full p-2 border rounded-lg focus:outline-none focus:ring-1 focus:ring-yellow-500 mb-2">
+                    <button onclick="updateMap()" class="w-full bg-gray-800 text-white text-[10px] px-4 py-2 rounded-md hover:bg-black transition-colors">UPDATE PETA</button>
+                </div>
+
+                <a id="nav-button" href="https://maps.app.goo.gl/3QW6Z" target="_blank" class="inline-block bg-yellow-600 text-white px-8 py-3 rounded-full text-xs font-bold shadow-lg hover:bg-yellow-700 transition-colors">
+                    BUKA DI GOOGLE MAPS
+                </a>
+            </div>
+
+            <!-- Penutup -->
+            <div class="text-center py-20 border-t border-gray-100">
+                <p class="max-w-2xl mx-auto text-gray-500 italic mb-12">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                </p>
+                <h4 class="font-cursive text-7xl mb-4 text-gray-800">Elang & Yunda</h4>
+                <p class="text-xs tracking-[0.5em] uppercase text-yellow-600 font-bold">Sampai Jumpa di Hari Bahagia Kami</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const weddingDate = new Date("april 05, 2026 08:00:00").getTime();
+
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "ACARA SEDANG BERLANGSUNG";
+            }
+        }, 1000);
+        function updateMap() {
+            const inputUrl = document.getElementById('map-url-input').value;
+            const iframe = document.getElementById('google-map-iframe');
+            
+            if (inputUrl.includes('google.com/maps/embed')) {
+                let srcMatch = inputUrl.match(/src="([^"]+)"/);
+                let finalUrl = srcMatch ? srcMatch[1] : inputUrl;
+                
+                iframe.src = finalUrl;
+                alert('Peta lokasi berhasil diperbarui!');
+            } else {
+                alert('Silakan masukkan link embed Google Maps yang valid.');
+            }
+        }
+
+        function startTransition() {
+            const btn = document.getElementById('btn-open');
+            const landingContent = document.getElementById('landing-content');
+            const overlay = document.getElementById('transition-overlay');
+            
+            btn.classList.add('smooth-disappear');
+            setTimeout(() => landingContent.classList.add('smooth-disappear'), 200);
+            setTimeout(() => overlay.classList.add('active'), 600);
+
+            setTimeout(() => {
+                document.getElementById('landing-page').style.display = 'none';
+                document.getElementById('wedding-content').classList.add('active');
+                document.getElementById('music-control').style.display = 'block';
+                overlay.classList.add('exit');
+                window.scrollTo(0, 0);
+            }, 1400);
+        }
+
+        function toggleMusic() {
+            const icon = document.getElementById('music-icon');
+            icon.style.opacity = (icon.style.opacity === '0.5') ? '1' : '0.5';
+        }
+    </script>
+</body>
+</html>
